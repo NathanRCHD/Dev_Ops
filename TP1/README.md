@@ -16,8 +16,15 @@ QUESTION 3:
 
 Document your database container essentials: commands and Dockerfile.
 
-Build image : docker build -t nruchaud/mysecondapp .
+Build image : docker build -t nruchaud/postgredb .
 
-Run contener adminer : docker run -p "8090:8080" --net=app-network --name=adminer -d adminer                     
+Run container adminer : docker run -p "8090:8080" --net=app-network --name=adminer -d adminer                     
 
-Run contener database : docker run --env-file .env -p 8888:5000 --name mysecondapp --network app-network -v "C:\Users\natha\OneDrive - Fondation EPF\Documents\Cours\DevOps\Dev_Ops\TP1\database\data_tp1:/var/lib/postgresql/data" nruchaud/mysecondapp
+Run container database : docker run --env-file .env -p 8888:5000 --name postgredb --network app-network -v "C:\Users\natha\OneDrive - Fondation EPF\Documents\Cours\DevOps\Dev_Ops\TP1\database\data_tp1:/var/lib/postgresql/data" nruchaud/postgredb
+
+QUESTION 4:
+
+Why do we need a multistage build? And explain each step of this dockerfile ?
+
+A multistage build is used to separate the compilation and execution phases, optimizing both security and image size. In the first stage of the Dockerfile, based on eclipse-temurin:21-jdk-alpine, Maven is installed and the Java source code is compiled into a .jar file using mvn package. This stage contains all the tools needed for building but not for running the application. In the second stage, a lighter image (eclipse-temurin:21-jre-alpine) is used to run the compiled .jar file, without including unnecessary tools like the JDK or Maven. The .jar is copied from the build stage into the runtime container and executed with java -jar. This approach results in a smaller, cleaner, and more secure final image while maintaining full build automation.
+
