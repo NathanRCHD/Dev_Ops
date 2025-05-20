@@ -25,15 +25,16 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Build and test with Maven
-        run: mvn clean verify --file ./backend/pom.xml
+        run: mvn clean verify
+        working-directory: ./backend
 
       - name: SonarCloud analysis
         run: mvn -B verify sonar:sonar \
           -Dsonar.projectKey=NathanRCHD_Dev_Ops \
           -Dsonar.organization=nathanrchd \
           -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          --file ./backend/pom.xml
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        working-directory: ./backend
 
   build-and-push-docker-image:
     needs: test-backend
