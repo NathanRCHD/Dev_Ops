@@ -96,3 +96,23 @@ Volumes
 db-data: persists PostgreSQL data to avoid loss on container restart/removal.
 
 EXERCICE 9:
+
+Document your publication commands and published images in dockerhub
+
+Database:
+docker tag tp1-devopsdb nathanrchd/tp1-devopsdb:1.0
+docker push nathanrchd/tp1-devopsdb:1.0
+
+Backend: 
+docker tag tp1-devopsback nathanrchd/tp1-devopsback:1.0
+docker push nathanrchd/tp1-devopsback:1.0
+
+Frontend:
+docker tag tp1-devopsfront nathanrchd/tp1-devopsfront:1.0
+docker push nathanrchd/tp1-devopsfront:1.0
+
+EXERCICE 10:
+
+Why do we put our images into an online repo?
+
+We push images to an online repository like Docker Hub to share them easily, reuse them on other machines, and enable automated deployment in team projects or CI/CD pipelines.
