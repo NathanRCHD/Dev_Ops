@@ -1,9 +1,9 @@
 
-# 📘 TP_1 – Docker & Docker Compose
+# TP_1 – Docker & Docker Compose
 
 ---
 
-## ❓ Question 1
+## Question 1
 
 ### *Why is it better to run the container with a flag `-e` to give the environment variables rather than put them directly in the Dockerfile?*
 
@@ -14,7 +14,7 @@ Using the `-e` flag at runtime is preferred because it:
 
 ---
 
-## ❓ Question 2
+## Question 2
 
 ### *Why do we need a volume to be attached to our postgres container?*
 
@@ -22,28 +22,28 @@ To persist data even if the container is stopped, removed, or recreated.
 
 ---
 
-## ❓ Question 3
+## Question 3
 
 ### *Document your database container essentials: commands and Dockerfile.*
 
-#### ✅ Build the image
+#### Build the image
 ```bash
 docker build -t nruchaud/postgredb .
 ```
 
-#### ✅ Run Adminer
+#### Run Adminer
 ```bash
 docker run -p "8090:8080" --net=app-network --name=adminer -d adminer
 ```
 
-#### ✅ Run PostgreSQL
+#### Run PostgreSQL
 ```bash
 docker run --env-file .env -p 8888:5000 --name postgredb   --network app-network   -v "C:\Users\natha\OneDrive - Fondation EPF\Documents\Cours\DevOps\Dev_Ops\TP1\database\data_tp1:/var/lib/postgresql/data"   nruchaud/postgredb
 ```
 
 ---
 
-## ❓ Question 4
+## Question 4
 
 ### *Why do we need a multistage build?*
 
@@ -59,7 +59,7 @@ To **separate build and runtime**, producing smaller, cleaner, and more secure i
 
 ---
 
-## ❓ Question 5
+## Question 5
 
 ### *Why do we need a reverse proxy?*
 
@@ -72,7 +72,7 @@ To:
 
 ---
 
-## ❓ Question 6
+## Question 6
 
 ### *Why is Docker Compose so important?*
 
@@ -80,7 +80,7 @@ It simplifies multi-container orchestration with a single command and a declarat
 
 ---
 
-## ❓ Question 7
+## Question 7
 
 ### *Most important Docker Compose commands*
 
@@ -97,45 +97,45 @@ docker-compose restart       # Restart services
 
 ---
 
-## ❓ Question 8
+## Question 8
 
 ### *Document your docker-compose file*
 
-#### 🔷 `DevOpsDB`
+#### `DevOpsDB`
 - Builds from `./database`, image: `tp1-devopsdb`
 - Loads env from `.env`
 - Uses volume `db-data` for persistence
 - Network: `net1`
 - Restart policy: `unless stopped`
 
-#### 🔷 `DevOpsBACK`
+#### `DevOpsBACK`
 - Builds from `./backend`, image: `tp1-devopsback`
 - Env from `.env`
 - Networks: `net1`, `net2`
 - Depends on: `DevOpsDB`
 - Restart policy: `on-failure:3`
 
-#### 🔷 `DevOpsFRONT`
+#### `DevOpsFRONT`
 - Builds from `./frontend`, image: `tp1-devopsfront`
 - Exposes port `80`
 - Network: `net2`
 - Depends on: `DevOpsBACK`
 - Restart policy: `no`
 
-#### 🌐 Networks
+#### Networks
 ```yaml
 net1: backend <--> database
 net2: backend <--> frontend
 ```
 
-#### 💾 Volumes
+#### Volumes
 ```yaml
 db-data: persistent PostgreSQL data
 ```
 
 ---
 
-## ✅ Exercice 9
+## Exercice 9
 
 ### *Docker Hub Publication Commands*
 
@@ -159,7 +159,7 @@ docker push nathanrchd/tp1-devopsfront:1.0
 
 ---
 
-## ❓ Exercice 10
+## Exercice 10
 
 ### *Why do we put our images into an online repo?*
 
