@@ -29,6 +29,6 @@ public class DepartmentService {
     }
 
     public String test() {
-        return "test";
+        return "test vivi trop topitop le cours hihi";
     }
 }
