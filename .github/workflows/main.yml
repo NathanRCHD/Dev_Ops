@@ -12,18 +12,50 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      # Checkout your GitHub code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Set up JDK 21
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
 
-      # Build and test with Maven
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
       - name: Build and test with Maven
         run: mvn clean verify --file ./backend/pom.xml
 
+  build-and-push-docker-image:
+    needs: test-backend
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          tags: nathanrchd/tp1-devopsback:latest
+          push: true
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          tags: nathanrchd/tp1-devopsfront:latest
+          push: true
+
+      - name: Build and push database image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./database
+          tags: nathanrchd/tp1-devopsdb:latest
+          push: true
