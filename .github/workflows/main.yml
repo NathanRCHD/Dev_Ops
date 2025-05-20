@@ -29,11 +29,7 @@ jobs:
         working-directory: ./backend
 
       - name: SonarCloud analysis
-        run: mvn -B verify sonar:sonar \
-          -Dsonar.projectKey=NathanRCHD_Dev_Ops \
-          -Dsonar.organization=nathanrchd \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=NathanRCHD_Dev_Ops -Dsonar.organization=nathanrchd -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         working-directory: ./backend
 
   build-and-push-docker-image:
