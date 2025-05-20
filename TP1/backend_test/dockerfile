@@ -1,0 +1,11 @@
+# Étape 1 : Build avec le JDK
+FROM eclipse-temurin:21-jdk-alpine as builder
+WORKDIR /app
+COPY Main.java .
+RUN javac Main.java
+
+# Étape 2 : Exécution avec le JRE
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=builder /app/Main.class .
+CMD ["java", "Main"]

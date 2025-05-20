@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  DevOpsDB:
+    build: ./database
+    image: tp1-devopsdb
+    container_name: DevOpsDB
+    env_file: ./database/.env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - net1
+
+  DevOpsBACK:
+    build: ./backend
+    image: tp1-devopsback
+    container_name: DevOpsBACK
+    env_file: ./backend/.env
+    ports:
+      - "8080:8080"
+    networks:
+      - net1
+      - net2
+    depends_on:
+      - DevOpsDB
+
+  DevOpsFRONT:
+    build: ./frontend
+    image: tp1-devopsfront
+    container_name: DevOpsFRONT
+    ports:
+      - "80:80"
+    networks:
+      - net2
+    depends_on:
+      - DevOpsBACK
+
+networks:
+  net1:
+  net2:
+
+volumes:
+  db-data:
