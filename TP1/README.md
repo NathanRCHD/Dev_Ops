@@ -164,3 +164,16 @@ docker push nathanrchd/tp1-devopsfront:1.0
 ### *Why do we put our images into an online repo?*
 
 To easily **share, reuse, and deploy** images across machines and teams, especially in CI/CD pipelines.
+
+
+📌 2-1 What are Testcontainers?
+Testcontainers are Java libraries that let you spin up Docker containers during integration tests. They simulate real environments, like PostgreSQL, for realistic testing.
+
+📌 2-2 Why do we use secured variables?
+To protect sensitive data like credentials or tokens from being exposed in logs, code, or public repositories.
+
+📌 2-3 Why did we put needs: test-backend?
+It ensures the image build job only runs if the backend tests pass. Without it, Docker images could be built even if your code is broken.
+
+📌 2-4 Why do we push Docker images?
+To deploy the app elsewhere (production, staging, team machines), and enable reproducible, versioned delivery of the applicatio
