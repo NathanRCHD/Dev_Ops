@@ -27,4 +27,8 @@ public class DepartmentService {
     public List<Department> getDepartments() {
         return this.departmentDAO.findAll();
     }
+
+    public String test() {
+        return "test";
+    }
 }
