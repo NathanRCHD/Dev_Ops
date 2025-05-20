@@ -38,3 +38,61 @@ reverse proxy routes external requests to internal services. It's useful to:
 - Enable SSL termination
 - Handle load balancing
 - Simplify URL routing
+
+QUESTION 6:
+
+Why is docker-compose so important?
+
+Docker Compose simplifies multi-container management by defining services, networks, and volumes in one file, enabling easy orchestration with a single command.
+
+QUESTION 7:
+
+Document docker-compose most important commands.
+
+docker-compose up – Starts all services defined in the YAML file.
+docker-compose up --build – Builds images before starting containers.
+docker-compose down – Stops and removes all containers, networks, and volumes.
+docker-compose build – Builds or rebuilds services without starting them.
+docker-compose ps – Lists running services and their status.
+docker-compose logs – Shows logs from all containers.
+docker-compose exec <service> <cmd> – Runs a command inside a running container (like bash or sh).
+docker-compose restart – Restarts one or all services.
+
+QUESTION 8:
+
+Document your docker-compose file.
+
+DevOpsDB
+Builds the image from ./database.
+Image name: tp1-devopsdb.
+Environment variables: loaded from .env in the database directory.
+Data persistence: stores PostgreSQL data in a named volume (db-data).
+Network: connected to net1 to communicate with the backend.
+Restart policy: restarts up to 3 times on failure.
+
+DevOpsBACK
+Builds the image from ./backend.
+Image name: tp1-devopsback.
+Environment variables: loaded from .env in the backend directory.
+Networks:
+net1: to connect with the database.
+net2: to connect with the frontend.
+Depends on DevOpsDB (ensures DB starts first).
+Restart policy: restarts up to 3 times on failure.
+
+DevOpsFRONT
+Builds the image from ./frontend.
+Image name: tp1-devopsfront.
+Ports: exposes port 80 to the host.
+Network: connected to net2 to forward requests to the backend.
+Depends on DevOpsBACK (ensures backend starts first).
+Restart policy: restarts up to 3 times on failure.
+
+Networks
+net1: private network between backend and database.
+net2: private network between backend and frontend.
+
+Volumes
+db-data: persists PostgreSQL data to avoid loss on container restart/removal.
+
+EXERCICE 9:
