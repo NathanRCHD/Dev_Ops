@@ -3,7 +3,7 @@ name: Deploy to Production
 on:
   workflow_run:
     workflows: ["CD devops 2025"]
-      branches: 
+    branches: 
       - main
     types:
       - completed 
