@@ -165,15 +165,38 @@ docker push nathanrchd/tp1-devopsfront:1.0
 
 To easily **share, reuse, and deploy** images across machines and teams, especially in CI/CD pipelines.
 
+# TP_2
 
-📌 2-1 What are Testcontainers?
+
+2-1 What are Testcontainers?
 Testcontainers are Java libraries that let you spin up Docker containers during integration tests. They simulate real environments, like PostgreSQL, for realistic testing.
 
-📌 2-2 Why do we use secured variables?
+2-2 Why do we use secured variables?
 To protect sensitive data like credentials or tokens from being exposed in logs, code, or public repositories.
 
 📌 2-3 Why did we put needs: test-backend?
 It ensures the image build job only runs if the backend tests pass. Without it, Docker images could be built even if your code is broken.
 
 📌 2-4 Why do we push Docker images?
-To deploy the app elsewhere (production, staging, team machines), and enable reproducible, versioned delivery of the applicatio
+To deploy the app elsewhere (production, staging, team machines), and enable reproducible, versioned delivery of the application
+
+
+
+# TP_3
+
+2
+Installs necessary system packages (apt-transport-https, curl, lsb-release, etc.)
+
+Adds Docker’s official GPG key
+
+Configures the Docker APT repository dynamically using the ansible_facts for the distribution release
+
+Installs Docker (docker-ce)
+
+Installs Python 3 and pip3
+
+Sets up a virtual environment for Python packages
+
+Installs the Docker SDK for Python inside the virtual environment
+
+Ensures the Docker service is up and running
