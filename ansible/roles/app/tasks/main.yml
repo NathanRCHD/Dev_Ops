@@ -2,6 +2,7 @@
   docker_container:
     name: DevOpsBACK
     image: nathanrchd/tp1-devopsback:latest
+    pull: yes
     networks:
       - name: net1
       - name: net2

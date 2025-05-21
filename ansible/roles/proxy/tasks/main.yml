@@ -2,6 +2,7 @@
   docker_container:
     name: DevOpsFRONT
     image: nathanrchd/tp1-devopsfront:latest
+    pull: yes
     networks:
       - name: net2
     restart_policy: no

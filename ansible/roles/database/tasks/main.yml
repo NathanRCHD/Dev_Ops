@@ -2,6 +2,7 @@
   docker_container:
     name: DevOpsDB
     image: nathanrchd/tp1-devopsdb:latest
+    pull: yes
     networks:
       - name: net1
     env_file: /tmp/db.env
