@@ -5,6 +5,9 @@ on:
     workflows: ["CI devops 2025"]
     types:
       - completed
+    branches:
+      - main
+      
 
 jobs:
   build-and-push-docker-image:
