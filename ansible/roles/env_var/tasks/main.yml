@@ -1,0 +1,4 @@
+- name: Copy .env to remote for database
+  copy:
+    src: files/.env
+    dest: /tmp/db.env

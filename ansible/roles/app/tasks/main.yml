@@ -1,0 +1,11 @@
+- name: Start backend app container with env_file
+  docker_container:
+    name: DevOpsBACK
+    image: nathanrchd/tp1-devopsback:latest
+    networks:
+      - name: net1
+      - name: net2
+    env_file: /tmp/app.env
+    restart_policy: on-failure
+    
+

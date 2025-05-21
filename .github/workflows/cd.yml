@@ -3,8 +3,11 @@ name: CD devops 2025
 on:
   workflow_run:
     workflows: ["CI devops 2025"]
+    branches: 
+      - main
     types:
       - completed
+      
 
 jobs:
   build-and-push-docker-image:

@@ -1,0 +1,8 @@
+- name: Start PostgreSQL container with env_file
+  docker_container:
+    name: DevOpsDB
+    image: nathanrchd/tp1-devopsdb:latest
+    networks:
+      - name: net1
+    env_file: /tmp/db.env
+    restart_policy: unless-stopped

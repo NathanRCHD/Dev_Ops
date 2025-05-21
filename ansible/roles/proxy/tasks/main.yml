@@ -1,0 +1,9 @@
+- name: Start HTTPD proxy container
+  docker_container:
+    name: DevOpsFRONT
+    image: nathanrchd/tp1-devopsfront:latest
+    networks:
+      - name: net2
+    restart_policy: no
+    ports:
+      - "80:80"
