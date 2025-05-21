@@ -58,7 +58,7 @@ public class DepartmentController {
         return ResponseEntity.ok(this.studentService.getStudentsNumberByDepartmentName(name));
     }
 
-    @GetMapping("/{departmentName}/test")
+    @GetMapping("/test")
     public ResponseEntity<Object> test() {
         return ResponseEntity.ok("Test");
     }
