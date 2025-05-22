@@ -41,3 +41,10 @@ jobs:
           context: ./database
           tags: nathanrchd/tp1-devopsdb:latest
           push: true
+
+      - name: Build and push interface image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./interface
+          tags: nathanrchd/tp1-devopsinterface:latest
+          push: true

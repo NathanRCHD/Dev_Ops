@@ -28,13 +28,25 @@ Services:
       - "80:80"
     networks:
       - net2
+      - net3
     depends_on:
       - DevOpsBACK
     restart: never
+  
+
+  DevOpsINTERFACE:
+    build: ./interface
+    image: tp1-devopsinterface
+    networks:
+      - net3
+    depends_on:
+      - DevOpsBACK
+    restart: unless-stopped
 
 networks:
   net1:
   net2:
+  net3:
 
 volumes:
   db-data:

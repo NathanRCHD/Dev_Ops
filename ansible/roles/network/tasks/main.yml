@@ -5,3 +5,7 @@
 - name: Create Docker network net2
   docker_network:
     name: net2
+
+- name: Create Docker network net3
+  docker_network:
+    name: net3

@@ -1,0 +1,9 @@
+- name: Start interface container
+  docker_container:
+    name: DevOpsINTERFACE
+    image: nathanrchd/tp1-devopsinterface:latest
+    pull: yes
+    networks:
+      - name: net3
+    restart_policy: no
+  tags: proxy

@@ -5,6 +5,7 @@
     pull: yes
     networks:
       - name: net2
+      - name: net3
     restart_policy: no
     ports:
       - "80:80"
