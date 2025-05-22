@@ -9,4 +9,3 @@
     restart_policy: no
     ports:
       - "80:80"
-  tags: proxy

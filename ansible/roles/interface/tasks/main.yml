@@ -5,5 +5,5 @@
     pull: yes
     networks:
       - name: net3
-    restart_policy: no
+    restart_policy: on-failure
   tags: proxy
