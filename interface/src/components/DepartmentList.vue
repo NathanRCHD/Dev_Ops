@@ -25,14 +25,13 @@ export default {
     };
   },
   mounted: function() {
-    fetch(`http://${process.env.VUE_APP_API_URL}/departments`)
+    fetch(`/api/departments`)
       .then(response => response.json())
       .then(data => (this.departments = data));
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 a {
   color: #232323;
